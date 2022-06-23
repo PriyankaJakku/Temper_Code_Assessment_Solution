@@ -1,0 +1,18 @@
+docker-compose -f docker-compose.yaml up
+
+# For checking the mysql terminal:
+docker exec -it <container> bash
+>#mysql -utemper_code_test -pgood_luck
+
+# Creating Image to run the Python code
+
+docker image build -t python:1 \images\Load_Data_Python
+
+docker images
+
+docker run python:1
+
+Remove Images:
+
+docker image rmi -f <image_id>
+docker stop <container_id>

@@ -10,7 +10,7 @@ help: ## Outputs this help screen
 up: ## Start database
 	$(DOCKER_COMP_F) up -d database # It can take some time for mysql to be ready
 build: ## Build
-	$(DOCKER_COMP_F) build database example-python
+	$(DOCKER_COMP_F) build database Load_Data_Python
 up-with-build: build up ## Build & Start database
 up-no-build: up # Start containers without building
 down: ## Stop containers
@@ -19,18 +19,18 @@ down: ## Stop containers
 ## —————————— 🎵 Development 🎵 —————————————————————————————
 
 run: up-no-build ## Run without rebuilding
-	$(DOCKER_COMP) run example-python #Update the name of you app
+	$(DOCKER_COMP) run Load_Data_Python #Update the name of you app
 run-build: up-with-build ## Run - with build
-	$(DOCKER_COMP) run example-python #Update the name of you app
+	$(DOCKER_COMP) run Load_Data_Python #Update the name of you app
 sh: up-no-build ## Bash - without rebuilding
-	$(DOCKER_COMP) run example-python /bin/bash #Update the name of you app
+	$(DOCKER_COMP) run Load_Data_Python /bin/bash #Update the name of you app
 sh-build: up-with-build ## Bash - with rebuilding
-	$(DOCKER_COMP) run example-python /bin/bash #Update the name of you app
+	$(DOCKER_COMP) run Load_Data_Python /bin/bash #Update the name of you app
 query: ## Query
 	$(DOCKER_COMP_F) run database mysql --host=database --user=temper_code_test --password=good_luck temper_code_test
 example:
-	$(DOCKER_COMP) run --no-TTY database mysql --host=database --user=temper_code_test --password=good_luck temper_code_test <example_schema.sql
-	$(DOCKER_COMP) run example-python
+	$(DOCKER_COMP) run --no-TTY database mysql --host=database --user=temper_code_test --password=good_luck temper_code_test <People_Places_schema.sql
+	$(DOCKER_COMP) run Load_Data_Python
 
 log: ## Show Logs
 	tail -n 100 -f $(PWD)/logs/*.log | awk '\
